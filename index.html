@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Spotify Preview</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js"></script>
+    <script src="https://use.fontawesome.com/375f8dd4b6.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <h1><i class="fa fa-spotify" aria-hidden="true"></i> Spotify Preview</h1>
+              <input type="text" id="input" class="form-control" placeholder="Busca una canción o artista">
+              <img class="loading" src="images/loading.gif" alt="loading" />
+              <div class="not-found"></div>
+              <button type="button" class="btn btn-default center-block">Login in Spotify</button>
+              <div class="tracks">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Script de handlebars para mostrar cada una de las preview -->
+    <script id="tracks-template" type="text/x-handlebars-template">
+      {{#each preview}}
+        <div class="media">
+          <div class="media-left">
+            <img class="media-object" src="{{this.album.images.[0].url}}" />
+          </div>
+          <div class="media-body">
+            <h3 class="media-heading">{{this.name}}</h3>
+            <span> {{this.artists.[0].name}}</span>
+            <div class="preview-song">
+              <audio controls><source src="{{this.preview_url}}" type="audio/mp3"></audio>
+            </div>
+          </div>
+        </div>
+      {{/each}}
+    </script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
